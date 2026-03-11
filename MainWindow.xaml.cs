@@ -74,6 +74,21 @@ public partial class MainWindow : Window
 
     private async Task LoadGamesAsync()
     {
+        // 0. Ensure donor is set
+        if (string.IsNullOrEmpty(_config.DonorExePath) || !File.Exists(_config.DonorExePath))
+        {
+            var msg = "Welcome to Coop Launcher!\n\nTo enable Remote Play Together benefits, you must first select a 'Donor' game from your Steam library.\n\nWould you like to set one up now?";
+            if (MessageBox.Show(msg, "Coop Launcher — Donor Required", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+            {
+                var win = new SettingsWindow(_allGames.Count == 0 ? await Task.Run(SteamDiscovery.Discover) : _allGames, _config) { Owner = this };
+                if (win.ShowDialog() == true) 
+                {
+                    _config = LauncherConfig.Load();
+                    UpdateDonorStatus();
+                }
+            }
+        }
+
         LoadingText.Visibility = Visibility.Visible;
         NoResultsText.Visibility = Visibility.Collapsed;
         SubtitleText.Text = "Scanning Steam library…";
@@ -360,5 +375,10 @@ public partial class MainWindow : Window
             // Re-render to hide newly-configured donor
             _ = LoadGamesAsync();
         }
+    }
+
+    private void CreditsBtn_Click(object sender, RoutedEventArgs e)
+    {
+        new CreditsWindow { Owner = this }.ShowDialog();
     }
 }

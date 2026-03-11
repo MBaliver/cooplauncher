@@ -230,9 +230,12 @@
                             Margin="0,0,8,0" Style="{StaticResource HeaderBtn}"
                             Click="RefreshBtn_Click"/>
                     <Button x:Name="SettingsBtn" Content="⚙  Donor"
-                            Style="{StaticResource HeaderBtn}"
+                            Margin="0,0,8,0" Style="{StaticResource HeaderBtn}"
                             Click="SettingsBtn_Click"
                             ToolTip="Configure which Steam game hosts Remote Play Together"/>
+                    <Button x:Name="CreditsBtn" Content="📋  Credits"
+                            Style="{StaticResource HeaderBtn}"
+                            Click="CreditsBtn_Click"/>
                 </StackPanel>
             </Grid>
         </Border>

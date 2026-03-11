@@ -2,7 +2,7 @@
 
 A modern, high-performance game launcher for Windows, designed specifically to leverage Steam's **Remote Play Together** benefits for non-Steam games and emulators.
 
-![Coop Launcher Interface](https://github.com/MBaliver/cooplauncher/blob/main/coop.png?raw=true)
+![Coop Launcher Interface](https://github.com/MBaliver/cooplauncher/raw/main/cooplauncher.png?raw=true)
 
 ## 🚀 Features
 
@@ -39,11 +39,15 @@ dotnet build -c Release
 dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
 ```
 
+## 🤝 Credits
+
+Developed with ❤️ by **Matheus Baliver**.
+
+-   **GitHub**: [@MBaliver](https://github.com/MBaliver/)
+
 ## ⚖️ License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the GNU General Public License v3.0. See `LICENSE` for more information.
 
 ---
 *Created for the community of local multiplayer enthusiasts.*
-
-
