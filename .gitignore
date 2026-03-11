@@ -1,0 +1,14 @@
+[Bb]in/
+[Oo]bj/
+*.user
+*.userosscache
+*.sln.doccache
+*.suo
+*.user
+*.userosscache
+*.sln.doccache
+*.suo
+publish/
+launcher_config.json
+*.zip
+release.md
