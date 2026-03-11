@@ -2,7 +2,7 @@
 
 A modern, high-performance game launcher for Windows, designed specifically to leverage Steam's **Remote Play Together** benefits for non-Steam games and emulators.
 
-![Coop Launcher Interface](https://via.placeholder.com/680x420.png?text=Coop+Launcher+Interface)
+![Coop Launcher Interface](https://github.com/MBaliver/cooplauncher/blob/main/cooplauncher.png?raw=true)
 
 ## 🚀 Features
 
@@ -45,3 +45,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 *Created for the community of local multiplayer enthusiasts.*
+
