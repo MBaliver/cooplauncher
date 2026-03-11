@@ -1,0 +1,46 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.x
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Publish Standalone (win-x64)
+      run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishReadyToRun=true -o ./publish/Standalone
+
+    - name: Publish Small (win-x64)
+      run: dotnet publish -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -p:PublishReadyToRun=true -o ./publish/Small
+
+    - name: Zip Standalone
+      run: Compress-Archive -Path ./publish/Standalone/* -DestinationPath ./CoopLauncher_Standalone_win-x64.zip
+
+    - name: Zip Small
+      run: Compress-Archive -Path ./publish/Small/* -DestinationPath ./CoopLauncher_Small_win-x64.zip
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: |
+          CoopLauncher_Standalone_win-x64.zip
+          CoopLauncher_Small_win-x64.zip
+        body_path: README.md
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
